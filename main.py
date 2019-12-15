@@ -59,7 +59,7 @@ class LatentAttention():
     def train(self):
         visualization = self.mnist.train.next_batch(self.batchsize)[0]
         reshaped_vis = visualization.reshape(self.batchsize,28,28)
-        ims("/content/variational-autoencoder/results/base.jpg",merge(reshaped_vis[:64],[8,8]))
+        ims("/content/Major-AutoEncoder/results/base.jpg",merge(reshaped_vis[:64],[8,8]))
         # train
         saver = tf.train.Saver(max_to_keep=2)
         with tf.Session() as sess:
@@ -74,7 +74,7 @@ class LatentAttention():
                         saver.save(sess, os.getcwd()+"/training/train",global_step=epoch)
                         generated_test = sess.run(self.generated_images, feed_dict={self.images: visualization})
                         generated_test = generated_test.reshape(self.batchsize,28,28)
-                        ims("/content/variational-autoencoder/results/"+str(epoch)+".jpg",merge(generated_test[:64],[8,8]))
+                        ims("/content/Major-AutoEncoder/results/"+str(epoch)+".jpg",merge(generated_test[:64],[8,8]))
 
 
 model = LatentAttention()
